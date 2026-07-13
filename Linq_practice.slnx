@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Array_Cars/Array_Cars.csproj" Id="eefcc440-5084-490e-92d8-1b5e87a8683a" />
+  <Project Path="Company_Sort/Company_Sort.csproj" Id="dcde821d-014d-4248-a5ef-f6a5e1716a1c" />
+  <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="Grouped/Grouped.csproj" Id="512a5315-a417-484b-a405-73ff41871e69" />
+</Solution>
