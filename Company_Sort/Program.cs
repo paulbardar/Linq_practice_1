@@ -46,7 +46,7 @@
             Console.WriteLine("=== Результат запиту ===");
             allFirms.ToList().ForEach(f => Console.WriteLine(f));
 
-            // Отримати фірми, у яких у назві є слово Food;
+            // 2. Отримати фірми, у яких у назві є слово Food;
 
             var Firms_byName = from f in firms
                                where f.Name.Contains("Food")
@@ -55,6 +55,12 @@
             foreach (var f in Firms_byName)
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
+
+            // 2_1 . Метод розширень
+            var foodFirms = firms.Where(f => f.Name.Contains("Food"));
+            Console.WriteLine("=== Результат запиту Food ===");
+            foodFirms.ToList().ForEach(f => Console.WriteLine(f));
+
 
             // Отримати фірми, які працюють у галузі маркетингу;
 
@@ -66,6 +72,11 @@
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
 
+            // 2_3. Метод розширень
+            var marketingFirms = firms.Where(f => f.BusinessProfile == "Marketing");
+            Console.WriteLine("=== Результат запиту Marketing ===");
+            marketingFirms.ToList().ForEach(f => Console.WriteLine(f));
+
             // Отримати фірми, які працюють у галузі маркетингу або IT;
 
             var Firms_Profiles = from f in firms
@@ -76,6 +87,12 @@
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
 
+
+            // 2_4. Метод розширень
+            var marketingOrItFirms = firms.Where(f => f.BusinessProfile == "Marketing" || f.BusinessProfile == "IT");
+            Console.WriteLine("=== Результат запиту Marketing IT ===");
+            marketingOrItFirms.ToList().ForEach(f => Console.WriteLine(f));
+
             // Отримати фірми з кількістю співробітників, більшою за 100;
             Console.WriteLine("================================================");
             var firms_more100 = firms.Where(p => p.EmployeeCount > 100);
@@ -84,6 +101,10 @@
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
 
+            // 2_5. Метод розширень
+            var largeFirms = firms.Where(f => f.EmployeeCount > 100);
+            Console.WriteLine("=== Результат запиту з кількістю співробітників, більшою за 100 ===");
+            marketingOrItFirms.ToList().ForEach(f => Console.WriteLine(f));
 
             // Отримати фірми з кількістю співробітників у діапазоні від 100 до 300;
             Console.WriteLine("================================================");
@@ -93,6 +114,10 @@
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
 
+            // 2_6 . Метод розширень
+            var midSizeFirms = firms.Where(f => f.EmployeeCount >= 100 && f.EmployeeCount <= 200);
+            Console.WriteLine("=== Результат запиту з кількістю співробітників, більшою за 100 і менше 200 ===");
+            midSizeFirms.ToList().ForEach(f => Console.WriteLine(f));
 
             // Отримати фірми, які знаходяться в Лондоні;
             Console.WriteLine("================================================");
@@ -102,13 +127,24 @@
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
 
-            // Отримати фірми з дня заснування, яких минуло 123 дні;
+            // 2_7 . Метод розширень
+            var londonFirms = firms.Where(f => f.Address.Contains("London"));
+            Console.WriteLine("=== Результат запиту фірми з Лондону ===");
+            midSizeFirms.ToList().ForEach(f => Console.WriteLine(f));
+
+            // Отримати фірми з дня заснування, яких минуло 1230 дні;
             Console.WriteLine("================================================");
             var Firm_more123 = firms.Where(d => (DateTime.Now - d.FoundationDate).Days > 1230);
 
             foreach (var f in Firm_more123)
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
+
+            // 2_9 Метод розширень
+            var olderThanTwoYears = firms.Where(f => f.FoundationDate < currentDate.AddYears(-2));
+            Console.WriteLine("=== Результат запиту фірми більше 2 років ===");
+            midSizeFirms.ToList().ForEach(f => Console.WriteLine(f));
+
 
             //Отримати фірми, у яких прізвище директора White;
             Console.WriteLine("================================================");
@@ -118,12 +154,20 @@
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
 
+            // 2_8 . Метод розширень
+            var whiteDirectors = firms.Where(f => f.DirectorFullName.EndsWith("White"));
+            Console.WriteLine("=== Результат запиту діректор White  ===");
+            midSizeFirms.ToList().ForEach(f => Console.WriteLine(f));
+
             // Отримати фірми, у яких прізвище директора Black і назва фірми містить слово White.
             Console.WriteLine("White Black ================================================");
             var Firm_Blank_White = firms.Where(p => p.DirectorFullName.EndsWith("Black") && p.Name.Contains("White"));
             foreach (var f in Firm_Blank_White)
                 Console.WriteLine(f.ToString());
             Console.WriteLine('\n');
+
+            Console.WriteLine("=== Результат запиту діректор Black Фірма White  ===");
+            Firm_Blank_White.ToList().ForEach(f => Console.WriteLine(f));
 
         }
     }
