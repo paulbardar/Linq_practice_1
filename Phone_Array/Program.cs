@@ -19,7 +19,7 @@
                 new Phone("Edge 50 Pro", "Motorola", 22000.00m, new DateTime(2024, 4, 16)),
                 new Phone("Xperia 1 VI", "Sony", 49000.00m, new DateTime(2024, 6, 1))
             };
-
+            // Task 3
             // Порахуйте кількість телефонів;
             int totalPhones = phones.Count();
             Console.WriteLine($"Total count Phones in List: {totalPhones}");
@@ -57,7 +57,6 @@
 
             if (mostExpensivePhone != null)
             {
-                Console.WriteLine("Найдорожчий телефон:");
                 Console.WriteLine($"Most Expensive phone: {mostExpensivePhone}");
             }
 
@@ -80,6 +79,43 @@
             // Знайдіть середню ціну телефону.
             decimal averagePrice = phones.Average(p => p.Price);
             Console.WriteLine($"Average price of Phone in List: {Math.Round(averagePrice, 2)} UAH");
+
+            // Task 4
+            // Відобразіть п'ять найдорожчих телефонів;
+            var top5ExpensivePhones = phones.OrderByDescending(p => p.Price).Take(5);
+
+            Console.WriteLine("--- ТОП-5 Most Expensive phones ---");
+            foreach (var phone in top5ExpensivePhones)
+            {
+                
+                Console.WriteLine(phone);
+            }
+
+            // Відобразіть п'ять найдешевших телефонів
+            var top5CheapestPhones = phones.OrderBy(p => p.Price).Take(5);
+            Console.WriteLine("--- ТОП-5 CHEAPEST PHONES ---");
+            foreach (var phone in top5CheapestPhones)
+            {
+                
+                Console.WriteLine(phone);
+            }
+
+            // Відобразіть три найстаріші телефони
+            var top3OldestPhones = phones.OrderBy(p => p.ReleaseDate).Take(3);
+            Console.WriteLine("--- ТОП-3 OLDEST PHONES ---");
+            foreach (var phone in top3OldestPhones)
+            {
+                Console.WriteLine(phone);
+            }
+            Console.WriteLine();
+
+            // Відобразіть три найновіші телефони.
+            var top3NewestWithSkip = phones.OrderBy(p => p.ReleaseDate).Skip(phones.Count - 3);
+            Console.WriteLine("--- 3 NEWEST PHONES (SKIP) ---");
+            foreach (var phone in top3NewestWithSkip)
+            {
+                Console.WriteLine(phone);
+            }
         }
     }
 
