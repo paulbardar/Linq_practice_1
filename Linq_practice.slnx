@@ -3,4 +3,5 @@
   <Project Path="Company_Sort/Company_Sort.csproj" Id="dcde821d-014d-4248-a5ef-f6a5e1716a1c" />
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
   <Project Path="Grouped/Grouped.csproj" Id="512a5315-a417-484b-a405-73ff41871e69" />
+  <Project Path="Phone_Array/Phone_Array.csproj" Id="e503fe24-a8a8-47b6-9503-d0aee276a1c8" />
 </Solution>

@@ -49,7 +49,8 @@ namespace Array_Cars
             var result = auto1.Except(auto2);
             Console.WriteLine("\n\nPазность множеств");
             foreach (var s in result)
-                Console.Write(s.Name + " " + s.Manufacturer + " ");
+                Console.WriteLine(s.Name + " " + s.Manufacturer + " ");
+            //Console.WriteLine(s);
 
             Console.WriteLine( "\n");
             Console.WriteLine("-----------------Intersect--------------------");
@@ -86,15 +87,19 @@ namespace Array_Cars
             if (other == null)
                 return false;
 
-            if (this.Name == other.Name)
+            if (this.Manufacturer == other.Manufacturer)
                 return true;
             else
                 return false;
         }
 
+        public override string ToString()
+        {
+            return $"{Name} {Manufacturer} {Year}";
+        }
         public override bool Equals(object? obj) => Equals(obj as Auto);
 
-        public override int GetHashCode() => Name!.GetHashCode();
+        public override int GetHashCode() => Manufacturer!.GetHashCode();
     }
 
 }
