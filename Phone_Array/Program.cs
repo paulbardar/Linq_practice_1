@@ -9,6 +9,7 @@
             List<Phone> phones = new List<Phone>
             {
                 new Phone("iPhone 15", "Apple", 35000.00m, new DateTime(2023, 9, 22)),
+                new Phone("iPhone 15", "Apple", 35000.00m, new DateTime(2023, 9, 22)),
                 new Phone("iPhone 16 Pro", "Apple", 52000.00m, new DateTime(2024, 9, 20)),
                 new Phone("Galaxy S24 Ultra", "Samsung", 48000.00m, new DateTime(2024, 1, 31)),
                 new Phone("Galaxy A55", "Samsung", 16500.00m, new DateTime(2024, 3, 15)),
@@ -17,6 +18,7 @@
                 new Phone("Redmi Note 13 Pro", "Xiaomi", 12000.00m, new DateTime(2024, 1, 15)),
                 new Phone("Xiaomi 14 Ultra", "Xiaomi", 55000.00m, new DateTime(2024, 2, 25)),
                 new Phone("Edge 50 Pro", "Motorola", 22000.00m, new DateTime(2024, 4, 16)),
+                new Phone("Xperia 1 VI", "Sony", 49000.00m, new DateTime(2024, 6, 1)),
                 new Phone("Xperia 1 VI", "Sony", 49000.00m, new DateTime(2024, 6, 1))
             };
             // Task 3
@@ -116,6 +118,52 @@
             {
                 Console.WriteLine(phone);
             }
+            Console.WriteLine();
+
+            // Task 5
+
+            // Відобразіть статистику за кількістю телефонів кожного виробника. Наприклад: Sony — 3, Samsung — 4, Apple — 5 і т.д.
+            var companyStatistics = phones
+                .GroupBy(p => p.Company)
+                .Select(g => new { Company = g.Key, Count = g.Count() });
+
+            Console.WriteLine("--- STATISTICS BY MANUFACTURERS ---");
+            foreach (var stat in companyStatistics)
+            {
+                Console.WriteLine($"{stat.Company} — {stat.Count}");
+            }
+            Console.WriteLine();
+
+            var companyStatistics1 = from p in phones
+                                    group p by p.Company into g
+                                    select new { Company = g.Key, Count = g.Count() };
+            Console.WriteLine("--- STATISTICS BY MANUFACTURERS BY QUERY SYNTAX) ---");
+            foreach (var stat in companyStatistics)
+            {
+                Console.WriteLine($"{stat.Company} — {stat.Count}");
+            }
+            Console.WriteLine();
+
+            // Відобразіть статистику за кількістю моделей телефонів. Наприклад: IPhone 13 — 12, IPhone 10 — 11, Galaxy S22 — 8.
+            var modelStatistics = from p in phones
+                                  group p by p.Name into g
+                                  select new { ModelName = g.Key, Count = g.Count() };
+            Console.WriteLine("---  STATISTICS BY MODELS ---");
+            foreach (var stat in modelStatistics)
+            {
+                Console.WriteLine($"{stat.ModelName} — {stat.Count}");
+            }
+            Console.WriteLine();
+
+            // Відобразіть статистику телефонів за роками. Наприклад: 2021 — 10, 2022 — 5, 2019 — 3.
+            var yearlyStatistics = phones
+            .GroupBy(p => p.ReleaseDate.Year) 
+            .Select(g => new { Year = g.Key, Count = g.Count() });
+            Console.WriteLine("--- STATISTICS BY YEAR (METHODS LINQ) ---");
+            foreach (var stat in yearlyStatistics)
+            {
+                Console.WriteLine($"{stat.Year} — {stat.Count}");
+            }
         }
     }
 
@@ -138,6 +186,9 @@
         {
             return $"{Name} {Company} {Price} UAH {ReleaseDate:d}";
         }
+
+
+       
     }
 
 }
